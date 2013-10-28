@@ -1,0 +1,37 @@
+set terminal png
+set output "grafica.png"
+unset border
+set polar
+set angles degrees
+
+set style line 10 lt 1 lc 0 lw 0.3
+
+set grid polar 60
+set grid ls 10
+
+set xrange [-400:400]
+set yrange [-400:400]
+
+set xtics axis
+set ytics axis
+
+set xtics scale 0
+set xtics ("" 50,"" 100,"" 150,"" 200,"" 300,"" 400)
+set ytics 0, 200, 400
+
+set size square
+
+set key lmargin
+
+set_label(x, text) = sprintf("set label '%s' at (450*cos(%f)),(450*sin(%f)) center", text, x, x)
+
+eval set_label(0, "0")
+eval set_label(60, "60")
+eval set_label(120, "120")
+eval set_label(180, "180")
+eval set_label(240, "240")
+eval set_label(300, "300")
+
+set style line 11 lt 1 lw 2 pt 2 ps 2
+
+plot "registoPlot.txt" u 2:1 t "Ocurrencias" 
